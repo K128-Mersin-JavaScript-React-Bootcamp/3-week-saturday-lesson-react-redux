@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM } from "../contstants/ItemActionTypes";
+import { ADD_ITEM, DELETE_ITEM, REPLACE_ITEMS } from "../contstants/ItemActionTypes";
 
 const initialItemsState = {
   items: []
@@ -7,11 +7,17 @@ const initialItemsState = {
 const itemsReducer = (state = initialItemsState, action) => {
   switch (action.type) {
     case ADD_ITEM:
-      return { ...state, items: [...state.items, action.itemName] }
+      return { ...state, items: [...state.items, action.item] }
     case DELETE_ITEM:
-      return { ...state, items: state.items.filter((v, i) => (
-        v !== action.itemName
-      )) }
+      return {
+        ...state, items: state.items.filter((v, i) => (
+          v.id !== action.id
+        ))
+      }
+    case REPLACE_ITEMS:
+      return {
+        ...state, items: action.items
+      }
     default:
       return state
   }
