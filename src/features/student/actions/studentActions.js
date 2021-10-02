@@ -1,4 +1,4 @@
-import { ADD_STUDENT, DELETE_STUDENT } from "../constants/StudentActionTypes";
+import { ADD_STUDENT, DELETE_STUDENT } from "../constants/studentActionTypes";
 
 export const addStudent = studentName => ({
     type: ADD_STUDENT,

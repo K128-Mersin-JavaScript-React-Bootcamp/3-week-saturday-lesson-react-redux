@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { ENDPOINTS } from '../../constants/endpoints';
-import { addItem, deleteItem, replaceItems } from '../actions/ItemActions';
+import { ENDPOINTS } from '../../../constants/endpoints';
+import { addItem, deleteItem, replaceItems } from '../actions/itemActions';
 
 function ItemsPage(props) {
     const [name, setName] = useState('');

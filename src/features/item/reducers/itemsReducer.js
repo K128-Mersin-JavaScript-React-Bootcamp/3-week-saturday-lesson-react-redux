@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, REPLACE_ITEMS } from "../contstants/ItemActionTypes";
+import { ADD_ITEM, DELETE_ITEM, REPLACE_ITEMS } from "../contstants/itemActionTypes";
 
 const initialItemsState = {
   items: []

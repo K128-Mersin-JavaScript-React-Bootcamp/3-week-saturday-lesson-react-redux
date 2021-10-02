@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
-import { addStudent, deleteStudent } from '../actions/StudentActions';
+import { addStudent, deleteStudent } from '../actions/studentActions';
 
 function StudentsPage(props) {
     const [name, setName] = useState('');

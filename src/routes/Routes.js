@@ -4,9 +4,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import HomePage from '../home/pages/HomePage';
-import ItemsPage from '../item/pages/ItemsPage';
-import StudentsPage from '../student/pages/StudentsPage';
+import HomePage from '../features/home/pages/HomePage';
+import ItemsPage from '../features/item/pages/ItemsPage';
+import StudentsPage from '../features/student/pages/StudentsPage';
 
 export default function Routes() {
     return (
