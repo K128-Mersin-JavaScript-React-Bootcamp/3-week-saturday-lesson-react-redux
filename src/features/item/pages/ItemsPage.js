@@ -1,40 +1,29 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { ENDPOINTS } from '../../../constants/endpoints';
-import { addItem, deleteItem, replaceItems } from '../actions/itemActions';
+import { deleteItemFromServer, getItemsFromServer, addItemFromServer, addItemSaga } 
+    from '../actions/itemActions';
 
 function ItemsPage(props) {
     const [name, setName] = useState('');
 
     useEffect(() => {
-        axios(ENDPOINTS.BASE_URL + "/items")
-            .then(json => props.replaceItems(json.data))
+        props.getItemsFromServer()
     }, []);
-
-    const handleDelete = ({id}) => {
-        console.log(id)
-        axios.delete(ENDPOINTS.BASE_URL + `/items/${id}`)
-        .then(json => props.deleteItem(id));
-    }
-    const handleAdd = (name) => {
-        console.log(name);
-        axios.post(ENDPOINTS.BASE_URL + `/items`, { name: name })
-        .then(json => props.addItem(json.data));
-    }
 
     return (
         <div>
             <h2>ItemsPage</h2>
             <input type="text" onChange={(e) => setName(e.target.value)} />
-            <button onClick={() => handleAdd(name)}>
+            <button onClick={() => props.addItemFromServer({ name: name })}>
                 AddItem</button>
+            <button onClick={() => props.getItemSaga()}>
+            getItemSaga</button>
 
             <ul>
                 {props.items.map((v, i) => 
                 <li key={v.id}>
                     {v.name}
-                    <button onClick={() => handleDelete(v)}>Delete</button>
+                    <button onClick={() => props.deleteItemFromServer(v.id)}>Delete</button>
                 </li>)}
             </ul>
         </div>
@@ -48,9 +37,11 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    addItem: (name) => dispatch(addItem(name)),
-    replaceItems: (items) => dispatch(replaceItems(items)),
-    deleteItem: (name) => dispatch(deleteItem(name)),
+    addItemFromServer: (item) => dispatch(addItemFromServer(item)),
+    getItemsFromServer: () => dispatch(getItemsFromServer()),
+    deleteItemFromServer: (id) => dispatch(deleteItemFromServer(id)),
+    //addItemSaga: (id) => dispatch(addItemSaga(item)),
+    getItemSaga: () => dispatch({type: 'GET_ITEM_SAGA'}),
 })
 
 
